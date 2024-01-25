@@ -50,6 +50,9 @@ fn add_operator(operator: &str, state: &mut CalcState) -> () {
         let results = exmex::eval_str::<f32>(&state.calculate_value).unwrap();
         state.current_value = format!("{}", results.to_string());
         state.calculate_value = format!("{}{}", results.to_string(), calculate_operator);
+        if state.preview_value.contains("x") || state.preview_value.contains("+") || state.preview_value.contains("-") {
+            state.preview_value = format!("{} {}", state.current_value, operator);
+        }
         state.reset_value = true;
         state.reset_input = false;
         state.can_change_operator = true;
