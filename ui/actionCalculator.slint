@@ -1,0 +1,119 @@
+import { Button , GridBox, VerticalBox} from "std-widgets.slint";
+
+struct ButtonStruct {
+    text: string,
+    color: color,
+}
+
+component CalculatorButton {
+    in property <int> button_width: 75;
+    in property <int> button_height: 60;
+    callback action-button;
+    Rectangle {
+        x:0px;
+        width: button-width*1px;
+        height: button-height*1px;
+        Button {
+            @children
+            min-width: button-width*1px;
+            min-height: button-height*1px;
+            clicked => {
+                action-button();
+            }
+        }
+    }
+    
+}
+
+export component ActionCalculator inherits GridLayout {
+    x:0;
+    y: 250px;
+    max-height: 400px;
+    max-width: 350px;
+    spacing: 8px;
+
+    property <int> vertical-box-width: 78;
+    property <int> vertical-box-height: 350;
+    property <[ButtonStruct]> button-row1: [
+        {text: "AC", color: #108b76 },
+        {text: "7", color: #fff },
+        {text: "4", color: #fff},
+        {text: "1", color: #fff},
+        {text: "RE", color: #fff}
+    ];
+    property <[ButtonStruct]> button-row2: [
+        {text: "/", color: #108b76 },
+        {text: "8", color: #fff },
+        {text: "5", color: #fff},
+        {text: "2", color: #fff},
+        {text: "0", color: #fff}
+    ];
+    property <[ButtonStruct]> button-row3: [
+        {text: "%", color: #108b76 },
+        {text: "9", color: #fff },
+        {text: "6", color: #fff},
+        {text: "3", color: #fff},
+        {text: ".", color: #fff}
+    ];
+    property <[ButtonStruct]> button-row4: [
+        {text: "&", color: #c22e2e },
+        {text: "X", color: #c22e2e },
+        {text: "-", color: #c22e2e},
+        {text: "+", color: #c22e2e},
+        {text: "=", color: #c22e2e}
+    ];
+    VerticalBox {
+        width: vertical-box-width*1px;
+        max-height: vertical-box-height*1px;
+        for button[i] in button-row1 : CalculatorButton  {
+            action-button => {
+                
+            }
+            Text {
+                text: button.text;
+                font-size: 20px;
+                color: button.color;
+            }
+        }
+        
+    }
+    VerticalBox {
+        width: vertical-box-width*1px;
+        max-height: vertical-box-height*1px;
+        for button in button-row2 : CalculatorButton {
+            Text {
+                text: button.text;
+                font-size: 20px;
+                color: button.color;
+            }
+        }
+        
+    }
+    VerticalBox {
+        width: vertical-box-width*1px;
+        max-height: vertical-box-height*1px;
+        for button in button-row3 : CalculatorButton {
+            Text {
+                text: button.text;
+                font-size: 20px;
+                color: button.color;
+            }
+        }
+        
+    }
+    VerticalBox {
+        width: vertical-box-width*1px;
+        max-height: vertical-box-height*1px;
+        for button in button-row4 : CalculatorButton {
+            Text {
+                text: button.text;
+                font-size: 20px;
+                color: button.color;
+            }
+        }
+        
+    }
+    
+    
+}
+    

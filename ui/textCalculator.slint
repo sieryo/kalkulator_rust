@@ -1,0 +1,14 @@
+import { LineEdit } from "std-widgets.slint";
+export component TextPreview {
+    in property <string> user_input:"";
+    x: 0;
+    y: 130px;
+    width: 350px;
+    height: 200px;
+    Text {
+        width: root.width;
+        font-size: 30px;
+        horizontal-alignment: right;
+        text: user-input;
+    }
+}
